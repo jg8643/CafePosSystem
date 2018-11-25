@@ -3,26 +3,32 @@
 #include "Sales.h"
 #include <time.h>
 #include "test3Dlg.h"
-class SalesData {
-public:
-	SalesData(char* date, char* name, char* number, char* price) {
-		this->date = atoi(date);
-		this->name = name;
-		this->number = atoi(number);
-		this->price = atoi(price);
-	};
-	SalesData(int date, CString name, CString number, CString price) {
-		this->date = date;
-		this->name = name;
-		this->number = _ttoi(number);
-		this->price = _ttoi(price);
-	};
 
-	int date;
-	CString name;
-	int number;
-	int price;
+SalesData::SalesData(char* date, char* name, char* number, char* price) {
+	this->date = atoi(date);
+	this->name = name;
+	this->number = atoi(number);
+	this->price = atoi(price);
 };
+SalesData::SalesData(int date, CString name, CString number, CString price) {
+	this->date = date;
+	this->name = name;
+	this->number = _ttoi(number);
+	this->price = _ttoi(price);
+}
+CString SalesData::GetNumber()
+{
+	CString str;
+	str.Format(L"%d", number);
+	return str;
+}
+CString SalesData::GetPrice()
+{
+	CString str;
+	str.Format(L"%d", price);
+	return str;
+}
+;
 
 Sales::Sales() {
 	ptest3Dlg = (Ctest3Dlg*)::AfxGetMainWnd();
@@ -43,7 +49,6 @@ void Sales::ReadSalesFile()
 		}
 		s_data[count++] = new SalesData(temp[0], temp[1], temp[2], temp[3]);
 	}
-
 	fclose(fin);
 }
 
@@ -84,13 +89,27 @@ int Sales::AddDate()
 
 void Sales::ChangeSales()
 {
-	//s_data[0]->date = AddDate();
+	int f_count = 0;
+	int j;
 	int num = ptest3Dlg->m_listctrl.GetItemCount();
-	int addcount = count + num;
-	while(count != addcount) {
-		for (int j = 0; j < num; j++) {
-			s_data[count++] = new SalesData(AddDate(), ptest3Dlg->m_listctrl.GetItemText(j, 0), ptest3Dlg->m_listctrl.GetItemText(j, 1), ptest3Dlg->m_listctrl.GetItemText(j, 2));
+	for (int i = 0; i < num; i++) {
+
+		for (j = 0; j < count; j++) {
+			if (f_count == 1)
+				break;
+			////////////////////////////////////
+			if (ptest3Dlg->m_listctrl.GetItemText(i, 0) == s_data[j]->name) {
+				s_data[j]->price = s_data[j]->price / s_data[j]->number * (s_data[j]->number + _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1)));
+				s_data[j]->number += _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1));
+				f_count = 1;
+			}
 		}
+
+		if (f_count == 0) {
+			s_data[j] = new SalesData(AddDate(), ptest3Dlg->m_listctrl.GetItemText(i, 0), ptest3Dlg->m_listctrl.GetItemText(i, 1), ptest3Dlg->m_listctrl.GetItemText(i, 2));
+			count++;
+		}
+		f_count = 0;
 	}
 	WriteSalesFile();
 }

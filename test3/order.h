@@ -6,11 +6,11 @@ class Order
 {
 public:
 	// 생성자
-	
 	Order(CString, int, int); 
 	Order(char *, char *, char *, char *r);  // 재고관리용 생성자
 	Order(CString *);
 	// 필드
+
 	CString tab;
 	CString name;
 	int number;

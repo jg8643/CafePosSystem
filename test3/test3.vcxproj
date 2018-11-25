@@ -195,6 +195,7 @@
     <ClInclude Include="CTab3.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sales.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stock.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="CTab2.cpp" />
     <ClCompile Include="CTab3.cpp" />
     <ClCompile Include="order.cpp" />
+    <ClCompile Include="Sales.cpp" />
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

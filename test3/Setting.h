@@ -1,8 +1,8 @@
 #pragma once
 class Order;
 class Stock;
-class SalesData;
 class Ctest3Dlg;
+class Sales;
 class Setting
 {
 public:
@@ -10,7 +10,7 @@ public:
 	~Setting();
 	Order *order[50];
 	Stock *stock;
-	SalesData *s_data;
+	Sales *sales;
 	Ctest3Dlg *p_mainFrm;
 	int count;
 	

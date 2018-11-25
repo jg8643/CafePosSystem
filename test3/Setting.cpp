@@ -3,6 +3,7 @@
 #include "order.h"
 #include "test3Dlg.h"
 #include "Stock.h"
+#include "Sales.h"
 #include <String.h>
 
 Setting::Setting(Ctest3Dlg* p_mainFrm)
@@ -10,6 +11,8 @@ Setting::Setting(Ctest3Dlg* p_mainFrm)
 	count = 0;
 	this->p_mainFrm = p_mainFrm;
 	stock = new Stock(this);
+	sales = new Sales();
+
 }
 
 Setting::~Setting()

@@ -21,12 +21,9 @@ void Stock::ReadStockFile() {
 	char *temp[4];
 	FILE *fin = fopen("stock.txt", "r");
 
-	int i = 1;
 
 	while (!feof(fin)) {
 		fgets(buf, sizeof(buf), fin);
-		fprintf(stdout, "%03d : %s",i++, buf);
-
 		temp[0] = strtok(buf, "|");
 		for (int i = 1; i < 4; i++) {
 			temp[i] = strtok(NULL, "|");

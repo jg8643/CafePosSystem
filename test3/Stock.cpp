@@ -4,8 +4,10 @@
 #include "order.h"
 #include <stdio.h>
 #include "test3Dlg.h"
-Stock::Stock() {
-	ptest3Dlg = (Ctest3Dlg*)::AfxGetMainWnd;
+#include "Setting.h"
+Stock::Stock(Setting* set) {
+	this->set  = set;
+	ptest3Dlg = (Ctest3Dlg*)::AfxGetMainWnd();
 	coffee_count = 0;
 	juice_count = 0;
 	bread_count = 0;
@@ -87,8 +89,8 @@ int Stock::SearchName(CString name) {
 }
 void Stock::ChangeStock()
 {
-	int num = ptest3Dlg->m_listctrl.GetItemCount();
-	for (int i = 0; i < ptest3Dlg->m_listctrl.GetItemCount(); i++) {
+	int num = set->count;
+	for (int i = 0; i < num; i++) {
 		for (int j = 0; j < count; j++) {
 			if (ptest3Dlg->m_listctrl.GetItemText(i, 0) == menu[j]->name) {
 				menu[j]->number = menu[j]->number - _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1));

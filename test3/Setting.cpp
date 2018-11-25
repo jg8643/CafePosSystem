@@ -5,10 +5,11 @@
 #include "Stock.h"
 #include <String.h>
 
-Setting::Setting()
-{
+Setting::Setting(Ctest3Dlg* p_mainFrm)
+{	
 	count = 0;
-	stock = new Stock();
+	this->p_mainFrm = p_mainFrm;
+	stock = new Stock(this);
 }
 
 Setting::~Setting()

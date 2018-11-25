@@ -1,0 +1,12 @@
+﻿  Stock.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\stock.cpp(56): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'ATL::CStringT<char,StrTraitMFC_DLL<char,ATL::ChTraitsCRT<_CharType>>>'입니다.
+          with
+          [
+              _CharType=char
+          ]
+c:\users\이정규\source\repos\cafepossystem\test3\stock.cpp(60): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'ATL::CStringT<char,StrTraitMFC_DLL<char,ATL::ChTraitsCRT<_CharType>>>'입니다.
+          with
+          [
+              _CharType=char
+          ]
+  test3.vcxproj -> C:\Users\이정규\source\repos\CafePosSystem\x64\Debug\test3.exe

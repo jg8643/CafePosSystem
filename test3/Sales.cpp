@@ -3,6 +3,7 @@
 #include "Sales.h"
 #include <time.h>
 #include "test3Dlg.h"
+#include "Setting.h"
 
 SalesData::SalesData(char* date, char* name, char* number, char* price) {
 	this->date = atoi(date);
@@ -15,6 +16,12 @@ SalesData::SalesData(int date, CString name, CString number, CString price) {
 	this->name = name;
 	this->number = _ttoi(number);
 	this->price = _ttoi(price);
+}
+SalesData::SalesData(CString name, int number, int price)
+{
+	this->name = name;
+	this->number = number;
+	this->price = price;
 }
 CString SalesData::GetNumber()
 {
@@ -33,6 +40,7 @@ CString SalesData::GetPrice()
 Sales::Sales() {
 	ptest3Dlg = (Ctest3Dlg*)::AfxGetMainWnd();
 	count = 0;
+	t_count = 0;
 	ReadSalesFile();
 }
 void Sales::ReadSalesFile()
@@ -54,7 +62,7 @@ void Sales::ReadSalesFile()
 
 void Sales::WriteSalesFile()
 {
-	FILE *fout = fopen("Sales1.txt", "w+");
+	FILE *fout = fopen("Sales.txt", "w+");
 	for (int i = 0; i < count - 1; i++) {
 		CStringA charstr1(s_data[i]->name);
 		fprintf(fout, "%d|%s|%d|%d\n", s_data[i]->date, charstr1, s_data[i]->number, s_data[i]->price);
@@ -62,6 +70,78 @@ void Sales::WriteSalesFile()
 	CStringA charstr1(s_data[count -1]->name);
 	fprintf(fout, "%d|%s|%d|%d", s_data[count -1]->date, charstr1, s_data[count - 1]->number, s_data[count - 1]->price);
 	fclose(fout);
+}
+
+void Sales::SetTdata(CString str1, CString str2)
+{
+	int i = 0, f_count = 0;
+	int	temp;
+	i = startpos(i, _ttoi(str1));
+	temp = _ttoi(str2)+1;
+
+	while (s_data[i]->date != temp) {
+		if (t_count == 0) {
+			// 처음 생성
+			t_data[t_count] = new SalesData(s_data[i]->name, s_data[i]->number, s_data[i]->price);
+			t_count++;
+			i++;
+		}
+		else {
+			// 처음이 아닐 때
+			for (int j = 0; j < t_count; j++) {
+				if (&s_data[i]->date == NULL)
+					break;
+				if (s_data[i]->date == temp)
+					break;
+				for (int k = 0; k < count; k++) {
+					if (f_count == 1)  // 이미 만들었으면 탈출
+						break;
+					if (&t_data[k]->date == NULL) //다음게 존재하지 않으면 탈출
+						break;
+					if (t_data[k]->name == s_data[i]->name) {
+						// s_data의 이름과 t_data의 이름이 같으면 개수, 가격 수정
+						t_data[k]->price = t_data[k]->price / t_data[k]->number * (t_data[k]->number + s_data[i]->number);
+						t_data[k]->number += s_data[i]->number;
+						f_count = 1;
+						i++;
+						break;
+					}
+				}
+				if (f_count == 0) {
+					// s_data의 이름과 t_data의 이름이 같지 않아 새로 생성
+					t_data[t_count] = new SalesData(s_data[i]->name, s_data[i]->number, s_data[i]->price);
+					t_count++;
+					i++;
+					break;
+				}
+				f_count = 0;
+			}
+		}
+		if (&s_data[i]->date == NULL)
+			break;
+	}
+}
+
+void Sales::InitTdata()
+{
+	for (int k = 0; k < t_count; k++) {
+		t_data[k] = NULL;
+	}
+	t_count = 0;
+}
+
+int Sales::startpos(int index, int str)
+{
+
+	for (int i = 0; i < count; i++) {
+		if (s_data[i]->date == str) {
+			index = i;
+			break;
+		}
+		else
+			index = 0;
+	}
+	return index;
 }
 
 int Sales::AddDate()
@@ -87,29 +167,57 @@ int Sales::AddDate()
 	return result;
 }
 
+int Sales::SearchFile()
+{
+	int result = 0;
+	int today = AddDate();
+
+	for (int i = 0; i < count; i++) {
+		if (s_data[i]->date == today) {
+			result = i;
+			break;
+		}
+		else
+			result = i + 1;
+	}
+	return result;
+}
+
 void Sales::ChangeSales()
 {
 	int f_count = 0;
+	int i = 0;
 	int j;
+	int start_point = SearchFile();
 	int num = ptest3Dlg->m_listctrl.GetItemCount();
-	for (int i = 0; i < num; i++) {
+	while (i != num) {
 
-		for (j = 0; j < count; j++) {
-			if (f_count == 1)
-				break;
-			////////////////////////////////////
-			if (ptest3Dlg->m_listctrl.GetItemText(i, 0) == s_data[j]->name) {
-				s_data[j]->price = s_data[j]->price / s_data[j]->number * (s_data[j]->number + _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1)));
-				s_data[j]->number += _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1));
+		if (&s_data[start_point]->date == NULL) {
+			// 날짜 바뀌고 처음 쓸때
+			for (int k = start_point; k < (start_point + num ); k++) {
+				s_data[k] = new SalesData(AddDate(), ptest3Dlg->m_listctrl.GetItemText(i, 0), ptest3Dlg->m_listctrl.GetItemText(i, 1), ptest3Dlg->m_listctrl.GetItemText(i, 2));
+				count++;
+				i++;
+			}
+			break;
+		}
+		
+		for (start_point; start_point < count; start_point++) {
+			if (ptest3Dlg->m_listctrl.GetItemText(i, 0) == s_data[start_point]->name) {
+				s_data[start_point]->price = s_data[start_point]->price / s_data[start_point]->number * (s_data[start_point]->number + _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1)));
+				s_data[start_point]->number += _ttoi(ptest3Dlg->m_listctrl.GetItemText(i, 1));
 				f_count = 1;
+				start_point = SearchFile();
+				break;
 			}
 		}
-
 		if (f_count == 0) {
-			s_data[j] = new SalesData(AddDate(), ptest3Dlg->m_listctrl.GetItemText(i, 0), ptest3Dlg->m_listctrl.GetItemText(i, 1), ptest3Dlg->m_listctrl.GetItemText(i, 2));
+			s_data[start_point] = new SalesData(AddDate(), ptest3Dlg->m_listctrl.GetItemText(i, 0), ptest3Dlg->m_listctrl.GetItemText(i, 1), ptest3Dlg->m_listctrl.GetItemText(i, 2));
 			count++;
 		}
 		f_count = 0;
+		i++;
+		start_point = SearchFile();
 	}
 	WriteSalesFile();
 }

@@ -1,5 +1,1 @@
-﻿  CSales.cpp
-c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(57): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(58): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(59): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  test3.vcxproj -> C:\Users\이정규\source\repos\CafePosSystem\x64\Debug\test3.exe
+﻿  test3.vcxproj -> C:\Users\이정규\source\repos\CafePosSystem\x64\Debug\test3.exe

@@ -5,19 +5,19 @@
 class Order
 {
 public:
-	// 생성자
-	Order(CString, int, int); 
-	Order(char *, char *, char *, char *r);  // 재고관리용 생성자
-	Order(CString *);
-	// 필드
+	Order(CString, int, int); // 주문 목록에 메뉴 처음 생성 할때 사용
+	Order(char *, char *, char *, char *r);  // 재고파일에서 데이터를 읽고 재고파일의 menu 생성시 사용
+	Order(CString *);// 메뉴 추가 할 때 사용하는 생성자
+
 
 	CString tab;
 	CString name;
 	int number;
 	int price;
 
-	// 메소드
-	CString GetPrice();
-	CString GetNumber();
+
+	CString GetTotalPrice();  // number * price   int to CString
+	CString GetPrice();       // price    int to CString
+	CString GetNumber();      // number   int to CString
 };
 

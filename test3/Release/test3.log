@@ -1,0 +1,2 @@
+﻿  CMenuReceipt.cpp
+LINK : fatal error LNK1104: 'C:\Users\이정규\source\repos\CafePosSystem\Release\test3.exe' 파일을 열 수 없습니다.

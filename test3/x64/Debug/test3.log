@@ -1,1 +1,39 @@
-﻿  test3.vcxproj -> C:\Users\이정규\source\repos\CafePosSystem\x64\Debug\test3.exe
+﻿  stdafx.cpp
+  CAddMenu.cpp
+  CCal.cpp
+  CCard.cpp
+  CCash.cpp
+  Cinventory.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\cinventory.cpp(61): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\이정규\source\repos\cafepossystem\test3\cinventory.cpp(62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CReceipt.cpp
+  CSales.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(57): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(58): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\이정규\source\repos\cafepossystem\test3\csales.cpp(59): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CTab1.cpp
+  CTab2.cpp
+  CTab3.cpp
+  order.cpp
+  Sales.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\sales.cpp(68): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'CStringA'입니다.
+c:\users\이정규\source\repos\cafepossystem\test3\sales.cpp(71): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'CStringA'입니다.
+  Setting.cpp
+  Stock.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\stock.cpp(53): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'ATL::CStringT<char,StrTraitMFC_DLL<char,ATL::ChTraitsCRT<_CharType>>>'입니다.
+          with
+          [
+              _CharType=char
+          ]
+c:\users\이정규\source\repos\cafepossystem\test3\stock.cpp(57): warning C4477: 'fprintf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'ATL::CStringT<char,StrTraitMFC_DLL<char,ATL::ChTraitsCRT<_CharType>>>'입니다.
+          with
+          [
+              _CharType=char
+          ]
+  test3.cpp
+  test3Dlg.cpp
+c:\users\이정규\source\repos\cafepossystem\test3\test3dlg.cpp(146): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\이정규\source\repos\cafepossystem\test3\test3dlg.cpp(147): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\이정규\source\repos\cafepossystem\test3\test3dlg.cpp(148): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  test3.vcxproj -> C:\Users\이정규\source\repos\CafePosSystem\x64\Debug\test3.exe

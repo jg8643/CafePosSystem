@@ -10,7 +10,9 @@ Order::Order(CString name, int number, int price)
 	this->number = number;
 	this->price = price;
 }
-Order::Order(char *tab, char *name, char *number, char *price)
+
+// 犁绊包府侩 积己磊
+Order::Order(char *tab, char *name, char *number, char *price)  
 {
 	this->tab = tab;
 	this->name = name;
@@ -26,11 +28,21 @@ Order::Order(CString *str)
 	this->price = _ttoi(str[3]);
 }
 
-CString Order::GetPrice() {
+// price   int to CString
+CString Order::GetTotalPrice() {
 	CString str;
 	str.Format(L"%d",price*number);
 	return str;
 }
+
+CString Order::GetPrice()
+{
+	CString str;
+	str.Format(L"%d", price);
+	return str;
+}
+
+// number  int to CString
 CString Order::GetNumber() {
 	CString str;
 	str.Format(L"%d", number);
